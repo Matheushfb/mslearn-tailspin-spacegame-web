@@ -5,10 +5,6 @@ data "archive_file" "init" {
 }
 
 resource "aws_lambda_function" "lambda_cria_db" {
-  provisioner "file" {
-    source      = "lib/libodbc*"
-    destination = "/"
-  }
   function_name = "${var.cliente}-lambda"
   role          = "${aws_iam_role.role.arn}"
   filename      = "main.py.zip"
