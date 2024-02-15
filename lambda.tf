@@ -1,7 +1,7 @@
 data "archive_file" "init" {
   type        = "zip"
   source_dir = "./script/"
-  output_path = "main.py.zip"
+  output_path = "lambda_handler.py.zip"
 }
 
 resource "aws_lambda_function" "lambda_cria_db" {
