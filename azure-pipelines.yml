@@ -72,10 +72,10 @@ stages:
               AWS_ACCESS_KEY_ID: "$(AWS_ACCESS_KEY_ID)"
               AWS_SECRET_ACCESS_KEY: "$(AWS_SECRET_ACCESS_KEY)"
           - task: TerraformCLI@0
-            displayName: 'terraform apply'
+            displayName: 'terraform destroy'
             inputs:
-              command: apply
-              commandOptions: '-var cliente=${{parameters.myCliente}}'
+              command: destroy
+#              commandOptions: '-var cliente=${{parameters.myCliente}}'
             env:
               AWS_ACCESS_KEY_ID: "$(AWS_ACCESS_KEY_ID)"
               AWS_SECRET_ACCESS_KEY: "$(AWS_SECRET_ACCESS_KEY)"
