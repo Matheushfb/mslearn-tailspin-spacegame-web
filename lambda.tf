@@ -1,12 +1,12 @@
-provider "archive_file" "init" {
+data "archive_file" "init" {
   type        = "zip"
-  source_file = "main.py"
+  source_file = "script"
   output_path = "main.py.zip"
 }
 
 resource "aws_lambda_function" "lambda_cria_db" {
   provisioner "file" {
-    source      = "script/"
+    source      = "script"
     destination = "/"
   }
   function_name = "${var.cliente}-lambda"
