@@ -1,6 +1,6 @@
 data "archive_file" "init" {
   type        = "zip"
-  source_dir = "script/*"
+  source_dir = "./script/"
   output_path = "main.py.zip"
 }
 
