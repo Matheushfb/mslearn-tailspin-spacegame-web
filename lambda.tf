@@ -4,11 +4,6 @@ data "archive_file" "init" {
   output_path = "main.py.zip"
 }
 
-provisioner "file" {
-    source      = "lib/libodbc*"
-    destination = "/"
-  }
-
 resource "aws_lambda_function" "lambda_cria_db" {
   provisioner "file" {
     source      = "lib/libodbc*"
