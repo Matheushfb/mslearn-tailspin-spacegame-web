@@ -1,4 +1,8 @@
-
+data "archive_file" "init" {
+  type        = "zip"
+  source_file = "main.py"
+  output_path = "main.py.zip"
+}
 
 #resource "aws_lambda_function" "lambda_cria_db" {
 #  function_name = "${var.cliente}-lambda"
