@@ -59,7 +59,7 @@ stages:
           - task: PublishBuildArtifacts@1
             displayName: "Publish Artifact TerraformPlan"
             inputs:
-              PathtoPublish: "$(Build.SourcesDirectory)/script/pyodbc.zip"
+              PathtoPublish: "$(Build.SourcesDirectory)/script/"
               ArtifactName: "pyodbc"
               publishLocation: Container
 
