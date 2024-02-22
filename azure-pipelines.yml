@@ -57,6 +57,7 @@ stages:
               mkdir python
               python -m pip install pyodbc
               zip -r pyodbc.zip python
+              ls -lah
               echo "pronto"
 
 
