@@ -52,11 +52,12 @@ stages:
         steps:
           - bash: |
               python3 -m venv venv_pyodbc
-              source venv_pytz/bin/activate
+              source venv_pyodbc/bin/activate
               python --version
               mkdir python
               python -m pip install pyodbc
-              zip -r pyodbc.zip python             
+              zip -r pyodbc.zip python
+              echo "pronto"
 
 
   - stage: ApprovalTimeout
