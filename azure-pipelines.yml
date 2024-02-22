@@ -58,6 +58,7 @@ stages:
               mkdir python
               python -m pip install pyodbc -t python
               ls -lah $(Agent.BuildDirectory)
+              pwd
               zip -r pyodbc.zip python
 #          - task: PublishBuildArtifacts@1
 #            displayName: "Publish Artifact Python-Package"
