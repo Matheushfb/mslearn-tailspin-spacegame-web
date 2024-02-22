@@ -57,8 +57,12 @@ stages:
               mkdir python
               python -m pip install pyodbc
               zip -r pyodbc.zip python
-              ls -lah
-              echo "pronto"
+          - task: PublishBuildArtifacts@1
+            displayName: "Publish Artifact Python-Package"
+            inputs:
+              PathtoPublish: "python/package/pyodbc.zip"
+              ArtifactName: "python-package"
+              publishLocation: Container
 
 
   - stage: ApprovalTimeout
