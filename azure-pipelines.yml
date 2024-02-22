@@ -59,12 +59,12 @@ stages:
               python -m pip install pyodbc -t python
               ls -lah $(Agent.BuildDirectory)
               zip -r pyodbc.zip python
-          - task: PublishBuildArtifacts@1
-            displayName: "Publish Artifact Python-Package"
-            inputs:
-              PathtoPublish: "python/pyodbc.zip"
-              ArtifactName: "python-package"
-              publishLocation: Container
+#          - task: PublishBuildArtifacts@1
+#            displayName: "Publish Artifact Python-Package"
+#            inputs:
+#              PathtoPublish: "script/pyodbc.zip"
+#              ArtifactName: "python-package"
+#              publishLocation: Container
 
 
   - stage: ApprovalTimeout
