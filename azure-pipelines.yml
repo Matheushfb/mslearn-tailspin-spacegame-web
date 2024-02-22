@@ -45,6 +45,20 @@ stages:
               AWS_ACCESS_KEY_ID: "$(AWS_ACCESS_KEY_ID)"
               AWS_SECRET_ACCESS_KEY: "$(AWS_SECRET_ACCESS_KEY)"
 
+  - stage: CreateLambdaLayer
+    jobs:
+      - job:
+        displayName: "Criando Layer Lambda para MS SQL"
+        steps:
+          - bash: |
+              python3 -m venv venv_pyodbc
+              source venv_pytz/bin/activate
+              python --version
+              mkdir python
+              python -m pip install pyodbc
+              zip -r pyodbc.zip python             
+
+
   - stage: ApprovalTimeout
     jobs:
       - job:
@@ -57,14 +71,6 @@ stages:
               instructions: 'Please validate the build configuration and resume'
               onTimeout: 'reject'
 
-  - stage: CreateLambdaLayer
-    jobs:
-      - job:
-        displayName: "Criando Layer Lambda para MS SQL"
-        steps:
-         - bash: |
-             python -m pip install pyodbc
-    
 
   - stage: ApplyTerraform
     jobs:
