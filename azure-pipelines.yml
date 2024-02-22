@@ -60,7 +60,7 @@ stages:
           - task: PublishBuildArtifacts@1
             displayName: "Publish Artifact Python-Package"
             inputs:
-              PathtoPublish: "python/package/pyodbc.zip"
+              PathtoPublish: "script/pyodbc.zip"
               ArtifactName: "python-package"
               publishLocation: Container
 
