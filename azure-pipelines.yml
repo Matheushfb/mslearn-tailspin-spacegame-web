@@ -59,9 +59,9 @@ stages:
 
   - stage: CreateLAbdaLayer
     jobs:
-      -job:
-       displayName: "Criando Layer Lambda para MS SQL"
-       steps:
+      - job:
+        displayName: "Criando Layer Lambda para MS SQL"
+        steps:
          - task:
            displayName: 'Use Python $(python.version)'
          - script: |
