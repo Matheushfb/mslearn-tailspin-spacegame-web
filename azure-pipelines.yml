@@ -27,6 +27,8 @@ stages:
       - job:
         displayName: "Executar init e plan do terraform"
         steps:
+          - bash: |
+              ls -lah $(Build.SourcesDirectory)
           - task: TerraformCLI@0
             displayName: 'terraform init'
             inputs:
@@ -57,8 +59,7 @@ stages:
               ls -lah $(Agent.BuildDirectory)
               mkdir python
               python -m pip install pyodbc -t python
-              ls -lah $(Agent.BuildDirectory)
-              ls -lah $(Agent.HomeDirectory)
+              ls -lah $(Build.SourcesDirectory)
               pwd
               zip -r pyodbc.zip python
 #          - task: PublishBuildArtifacts@1
