@@ -54,6 +54,7 @@ stages:
               ls -lah $(Build.SourcesDirectory)
               pwd
               zip -r pyodbc.zip python
+              ls -lah $(Build.SourcesDirectory)
 
 
   - stage: ApprovalTimeout
