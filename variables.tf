@@ -16,8 +16,8 @@ variable "layer_path" {
 }
 
 variable "layer_name" {
-  type=string
-  default = ""
+  type    = string
+  default = "pyodbc"
 }
 
 variable "runtime" {
