@@ -13,9 +13,6 @@ resource "aws_lambda_function" "lambda_cria_db" {
 }
 
 resource "null_resource" "build_lambda_layers" {
-  triggers {
-    layer_build = "${md5(file("${local.layers_path}/package.json"))}"
-  }
 
   provisioner "local-exec" {
     working_dir = "${var.layer_path}"
@@ -27,7 +24,7 @@ resource "null_resource" "build_lambda_layers" {
 resource "aws_lambda_layer_version" "this" {
   filename    = "${var.layer_path}/../${var.layer_name}.zip"
   layer_name  = "${var.layer_name}"
-  description = "joi: 14.3.1, moment: 2.24.0"
+  description = "pyodbc"
 
   compatible_runtimes = ["${var.runtime}"]
 
