@@ -54,7 +54,7 @@ stages:
               ls -lah $(Build.SourcesDirectory)
               pwd
               zip -r pyodbc.zip python
-              ls -lah $(Build.SourcesDirectory)
+              ls -lah $(Build.SourcesDirectory)/python/
               pwd
           - task: PublishBuildArtifacts@1
             displayName: "Publish Artifact TerraformPlan"
