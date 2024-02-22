@@ -57,6 +57,17 @@ stages:
               instructions: 'Please validate the build configuration and resume'
               onTimeout: 'reject'
 
+  - stage: CreateLAbdaLayer
+    jobs:
+      -job:
+       displayName: "Criando Layer Lambda para MS SQL"
+       steps:
+         - task:
+           displayName: 'Use Python $(python.version)'
+         - script: |
+             python -m pip install pyodbc
+    
+
   - stage: ApplyTerraform
     jobs:
       - job:
@@ -79,4 +90,3 @@ stages:
             env:
               AWS_ACCESS_KEY_ID: "$(AWS_ACCESS_KEY_ID)"
               AWS_SECRET_ACCESS_KEY: "$(AWS_SECRET_ACCESS_KEY)"
-
