@@ -55,6 +55,12 @@ stages:
               pwd
               zip -r pyodbc.zip python
               ls -lah $(Build.SourcesDirectory)
+          - task: PublishBuildArtifacts@1
+            displayName: "Publish Artifact TerraformPlan"
+            inputs:
+              PathtoPublish: "script/pyodbc.zip"
+              ArtifactName: "pyodbc"
+              publishLocation: Container
 
 
   - stage: ApprovalTimeout
