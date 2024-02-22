@@ -27,8 +27,6 @@ stages:
       - job:
         displayName: "Executar init e plan do terraform"
         steps:
-          - bash: |
-              ls -lah $(Build.SourcesDirectory)
           - task: TerraformCLI@0
             displayName: 'terraform init'
             inputs:
@@ -46,12 +44,6 @@ stages:
             env:
               AWS_ACCESS_KEY_ID: "$(AWS_ACCESS_KEY_ID)"
               AWS_SECRET_ACCESS_KEY: "$(AWS_SECRET_ACCESS_KEY)"
-
-  - stage: CreateLambdaLayer
-    jobs:
-      - job:
-        displayName: "Criando Layer Lambda para MS SQL"
-        steps:
           - bash: |
               python3 -m venv venv_pyodbc
               source venv_pyodbc/bin/activate
@@ -62,12 +54,6 @@ stages:
               ls -lah $(Build.SourcesDirectory)
               pwd
               zip -r pyodbc.zip python
-#          - task: PublishBuildArtifacts@1
-#            displayName: "Publish Artifact Python-Package"
-#            inputs:
-#              PathtoPublish: "script/pyodbc.zip"
-#              ArtifactName: "python-package"
-#              publishLocation: Container
 
 
   - stage: ApprovalTimeout
