@@ -10,4 +10,16 @@ variable "role" {
   default     = ""
 }
 
+variable "layer_path" {
+  type=string
+  default = "./script/"
+}
 
+variable "layer_name" {
+  type=string
+  default = ""
+}
+
+variable "runtime" {
+  default = "python3.12"
+}
