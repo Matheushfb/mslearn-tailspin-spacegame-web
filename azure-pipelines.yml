@@ -57,14 +57,12 @@ stages:
               instructions: 'Please validate the build configuration and resume'
               onTimeout: 'reject'
 
-  - stage: CreateLAbdaLayer
+  - stage: CreateLambdaLayer
     jobs:
       - job:
         displayName: "Criando Layer Lambda para MS SQL"
         steps:
-         - task:
-           displayName: 'Use Python $(python.version)'
-         - script: |
+         - bash: |
              python -m pip install pyodbc
     
 
