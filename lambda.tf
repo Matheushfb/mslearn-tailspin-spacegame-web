@@ -15,14 +15,14 @@ resource "aws_lambda_function" "lambda_cria_db" {
 resource "null_resource" "build_lambda_layers" {
 
   provisioner "local-exec" {
-    #working_dir = "${var.layer_path}"
+    working_dir = "${var.layer_path}"
     command     = " sudo apt update && sudo apt install python3-pip && python3 -m venv venv_pyodbc  && source venv_pyodbc/bin/activate && mkdir python && python -m pip install pyodbc -t script && zip -r ${var.layer_name}.zip python"
     #command      = "sudo apt update && sudo apt install python3-pip && ls -lah"
   }
 }
 
 resource "aws_lambda_layer_version" "this" {
-  filename    = "${var.layer_path}/../${var.layer_name}.zip"
+  filename    = "${var.layer_path}-${var.layer_name}.zip"
   layer_name  = "${var.layer_name}"
   description = "pyodbc"
 
