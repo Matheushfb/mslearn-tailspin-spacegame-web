@@ -17,7 +17,7 @@ resource "null_resource" "build_lambda_layers" {
   provisioner "local-exec" {
     #working_dir = "${var.layer_path}"
     #command     = " ls -lah && python3 -m venv venv_pyodbc  && source venv_pyodbc/bin/activate && mkdir python && python -m pip install pyodbc -t script && zip -r ${var.layer_name}.zip python"
-    command      = "sudo apt update, ls -lah"
+    command      = "sudo apt update && ls -lah"
   }
 }
 
