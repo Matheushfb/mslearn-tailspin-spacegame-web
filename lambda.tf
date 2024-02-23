@@ -22,7 +22,7 @@ resource "null_resource" "build_lambda_layers" {
 }
 
 resource "aws_lambda_layer_version" "this" {
-  filename    = "${var.layer_path}-${var.layer_name}.zip"
+  filename    = "${var.layer_name}.zip"
   layer_name  = "${var.layer_name}"
   description = "pyodbc"
 
