@@ -62,10 +62,10 @@ stages:
               pip install pyodbc -t python
               pwd
               python -c "import shutil; shutil.make_archive('./python/','zip','.')"
-              ls -la && ls -la python && ls -la script && ls -la venv_pyodbc
+              ls -la && ls -la python && ls -la script
             displayName: '📦 Build zip file'
 
-          - publish: $(System.DefaultWorkingDirectory)/pyodbc.zip
+          - publish: $(System.DefaultWorkingDirectory)/python.zip
             artifact: pyodbc
 
   - stage: ApprovalTimeout
