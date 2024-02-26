@@ -95,11 +95,13 @@ stages:
               AWS_ACCESS_KEY_ID: "$(AWS_ACCESS_KEY_ID)"
               AWS_SECRET_ACCESS_KEY: "$(AWS_SECRET_ACCESS_KEY)"
 
-          - task: DownloadBuildArtifacts@0
+          - task: DownloadBuildArtifacts@1
+            displayName: "Download Artifact TerraformPlan"
             inputs:
-              downloadPath: '$(System.DefaultWorkingDirectory)'
-              artifactName: 'pyodbc'
-              displayName: 'Download Plan Artifact'
+              buildType: current
+              downloadType: specific
+              artifactName: "pyodbc"
+              downloadPath: "./"
 
           - task: TerraformCLI@0
             displayName: 'terraform apply'
