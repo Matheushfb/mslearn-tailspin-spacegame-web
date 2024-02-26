@@ -48,7 +48,7 @@ stages:
 
   - stage: BuildLayer
     jobs:
-      - job: build_zip
+      - job:
         container: python:3.9
         steps:
           - script: 'python3 --version'
@@ -57,15 +57,15 @@ stages:
           - script: |
               python3 -m venv venv_pyodbc
               source venv_pyodbc/bin/activate
-              mkdir python
+#             mkdir python
               pip install --upgrade pip
-              pip install pyodbc -t python
+              pip install pyodbc -t script
               pwd
-              python -c "import shutil; shutil.make_archive('./python/','zip','.')"
-              ls -la && ls -la python && ls -la script
+              python -c "import shutil; shutil.make_archive('pyodbc','zip','./script')"
+              ls -la && ls -la script
             displayName: '📦 Build zip file'
 
-          - publish: $(System.DefaultWorkingDirectory)/python.zip
+          - publish: $(System.DefaultWorkingDirectory)/pyodbc.zip
             artifact: pyodbc
 
   - stage: ApprovalTimeout
