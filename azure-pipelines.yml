@@ -60,7 +60,7 @@ stages:
               mkdir python
               pip install --upgrade pip
               pip install pyodbc -t python
-              zip -r pyodbc.zip python
+              python -c "import shutil; shutil.make_archive('./python', 'zip', '.')"
             displayName: '📦 Build zip file'
 
           - publish: $(System.DefaultWorkingDirectory)/pyodbc.zip
