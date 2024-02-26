@@ -46,6 +46,29 @@ stages:
               AWS_SECRET_ACCESS_KEY: "$(AWS_SECRET_ACCESS_KEY)"
 
 
+  - stage: BuildLayer
+    jobs:
+      - job: build_zip
+        container: python:3.9
+        steps:
+          - script: 'python3 --version'
+            displayName: '🔍 Check python version'
+
+          - script: |
+              python3 -m venv venv 
+              source venv/bin/activate
+              pip install --upgrade pip
+              pip install aws-sam-cli
+              pip install -r src/requirements.txt            
+              sam --version
+              sam build 
+              cd .aws-sam/build/${{ parameters.myCliente}} 
+              python -c "import shutil; shutil.make_archive('../../../${{parameters.myCliente}}', 'zip', '.')"
+            displayName: '📦 Build zip file'
+
+          - publish: $(System.DefaultWorkingDirectory)/${{ parameters.myCliente}}.zip
+            artifact: ${{ parameters.myCliente}}
+
   - stage: ApprovalTimeout
     jobs:
       - job:
