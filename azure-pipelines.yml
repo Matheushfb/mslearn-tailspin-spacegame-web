@@ -49,6 +49,7 @@ stages:
   - stage: BuildLayer
     jobs:
       - job:
+        displayName: "Build Layer"
         container: python:3.9
         steps:
           - script: 'python3 --version'
@@ -61,7 +62,6 @@ stages:
               pip install pyodbc -t pyodbc
               pwd
               python -c "import shutil; shutil.make_archive('pyodbc','zip','./pyodbc')"
-              ls -la && ls -la script
             displayName: '📦 Build zip file'
 
           - publish: $(System.DefaultWorkingDirectory)/pyodbc.zip

@@ -12,21 +12,13 @@ resource "aws_lambda_function" "lambda_cria_db" {
   runtime       = "${var.runtime}"
 }
 
-resource "null_resource" "build_lambda_layers" {
 
-  provisioner "local-exec" {
-    working_dir = "${var.layer_path}"
-    #command     = "pwd && ls -lah && sudo apt update && sudo apt install python3-pip && python3 -m venv venv_pyodbc  && source venv_pyodbc/bin/activate && mkdir python && python -m pip install pyodbc -t python && zip -r ${var.layer_name}.zip python"
-    command      = "pwd && ls -lah"
-  }
+resource "aws_lambda_layer_version" "this" {
+  filename    = "${var.layer_name}.zip"
+  layer_name  = "${var.layer_name}"
+  description = "pyodbc"
+
+  compatible_runtimes = ["${var.runtime}"]
+
+  depends_on = ["null_resource.build_lambda_layers"]
 }
-
-#resource "aws_lambda_layer_version" "this" {
-#  filename    = "${var.layer_name}.zip"
-#  layer_name  = "${var.layer_name}"
-#  description = "pyodbc"
-
-#  compatible_runtimes = ["${var.runtime}"]
-
-#  depends_on = ["null_resource.build_lambda_layers"]
-#}
