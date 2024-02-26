@@ -20,5 +20,4 @@ resource "aws_lambda_layer_version" "this" {
 
   compatible_runtimes = ["${var.runtime}"]
 
-  depends_on = ["null_resource.build_lambda_layers"]
 }
