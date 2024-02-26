@@ -54,16 +54,15 @@ stages:
         steps:
           - script: 'python3 --version'
             displayName: '🔍 Check python version'
-
           - script: |
               python3 -m venv venv_pyodbc
               source venv_pyodbc/bin/activate
               pip install --upgrade pip
               pip install pyodbc -t pyodbc
               pwd
+              ls -la $(System.DefaultWorkingDirectory)
               python -c "import shutil; shutil.make_archive('pyodbc','zip','./pyodbc')"
             displayName: '📦 Build zip file'
-
           - publish: $(System.DefaultWorkingDirectory)/pyodbc.zip
             artifact: pyodbc
 
@@ -96,7 +95,7 @@ stages:
               AWS_SECRET_ACCESS_KEY: "$(AWS_SECRET_ACCESS_KEY)"
 
           - task: DownloadBuildArtifacts@1
-            displayName: "Download Artifact TerraformPlan"
+            displayName: "Download Artifact PyODBC"
             inputs:
               buildType: current
               downloadType: specific
