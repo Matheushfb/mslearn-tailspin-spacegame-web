@@ -55,19 +55,16 @@ stages:
             displayName: '🔍 Check python version'
 
           - script: |
-              python3 -m venv venv 
-              source venv/bin/activate
+              python3 -m venv venv_pyodbc
+              source venv_pyodbc/bin/activate
+              mkdir python
               pip install --upgrade pip
-              pip install aws-sam-cli
-              pip install -r src/requirements.txt            
-              sam --version
-              sam build 
-              cd .aws-sam/build/${{ parameters.myCliente}} 
-              python -c "import shutil; shutil.make_archive('../../../${{parameters.myCliente}}', 'zip', '.')"
+              pip install pyodbc -t python
+              zip -r pyodbc.zip python
             displayName: '📦 Build zip file'
 
-          - publish: $(System.DefaultWorkingDirectory)/${{ parameters.myCliente}}.zip
-            artifact: ${{ parameters.myCliente}}
+          - publish: $(System.DefaultWorkingDirectory)/pyodbc.zip
+            artifact: pyodbc
 
   - stage: ApprovalTimeout
     jobs:
