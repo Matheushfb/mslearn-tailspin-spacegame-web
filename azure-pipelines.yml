@@ -60,6 +60,7 @@ stages:
               mkdir python
               pip install --upgrade pip
               pip install pyodbc -t python
+              pwd
               python -c "import shutil; shutil.make_archive('./python', 'zip', '.')"
             displayName: '📦 Build zip file'
 
